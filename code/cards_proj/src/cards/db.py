@@ -13,12 +13,10 @@ class DB:
         )
 
     def create(self, item: dict) -> int:
-        id = self._db.insert(item)
-        return id
+        return self._db.insert(item)
 
     def read(self, id: int):
-        item = self._db.get(doc_id=id)
-        return item
+        return self._db.get(doc_id=id)
 
     def read_all(self):
         return self._db
