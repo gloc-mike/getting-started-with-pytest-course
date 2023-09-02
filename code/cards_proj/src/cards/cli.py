@@ -123,12 +123,11 @@ def main(ctx: typer.Context):
 
 
 def get_path():
-    db_path_env = os.getenv("CARDS_DB_DIR", "")
-    if db_path_env:
-        db_path = pathlib.Path(db_path_env)
-    else:
-        db_path = pathlib.Path.home() / "cards_db"
-    return db_path
+    return (
+        pathlib.Path(db_path_env)
+        if (db_path_env := os.getenv("CARDS_DB_DIR", ""))
+        else pathlib.Path.home() / "cards_db"
+    )
 
 
 @contextmanager
